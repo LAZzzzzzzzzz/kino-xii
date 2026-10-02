@@ -4,19 +4,20 @@ const BUTTON_CLASSES = {
   base: 'flex shrink-0 cursor-pointer items-center justify-center gap-1 rounded-full px-5.5 py-3.25 text-sm font-extrabold whitespace-nowrap',
   variants: {
     primary: 'bg-red text-primary',
+    secondary: 'bg-tint-white text-primary',
     light: 'bg-primary text-page',
   },
 };
 
 const Button = ({
+  as: Component = 'button',
   variant = 'primary',
-  type = 'button',
   className,
   ...rest
 }) => {
   return (
-    <button
-      type={type}
+    <Component
+      type={Component === 'button' ? 'button' : undefined}
       {...rest}
       className={cn(
         BUTTON_CLASSES.base,

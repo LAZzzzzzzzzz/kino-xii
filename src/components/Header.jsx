@@ -1,3 +1,4 @@
+import { Link } from 'react-router';
 import { navbarBackground } from '@/assets';
 import { cn } from '@/helpers';
 import Button from './Button';
@@ -18,20 +19,20 @@ const Header = ({ className }) => {
       />
 
       <nav className="relative flex shrink-0 items-center gap-9 whitespace-nowrap">
-        <a
-          href="/"
+        <Link
+          to="/"
           aria-label="Kino XII home"
           className="flex items-center gap-1.5 text-xl font-extrabold"
         >
           <span>KINO</span>
           <span className="text-red">XII</span>
-        </a>
-        <a
-          href="#sessions"
+        </Link>
+        <Link
+          to="/sessions"
           className="text-xs font-semibold tracking-overline uppercase"
         >
           Sessions
-        </a>
+        </Link>
       </nav>
 
       <div className="relative flex min-w-0 items-center gap-8">
