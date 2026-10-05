@@ -1,14 +1,23 @@
-import { getBannerImage } from './helpers';
+import HeroBackdrop from './HeroBackdrop';
 import HeroContent from './HeroContent';
 import HeroControls from './HeroControls';
 import HeroPlaceholder from './HeroPlaceholder';
 import { useHero } from './useHero';
 
 const Hero = () => {
-  const { movie, segments, isPending, isError, showPrevious, showNext } =
-    useHero();
+  const {
+    movies,
+    activeIndex,
+    segments,
+    isPending,
+    isError,
+    showPrevious,
+    showNext,
+    pause,
+    resume,
+  } = useHero();
 
-  if (!movie) {
+  if (!movies.length) {
     return <HeroPlaceholder isPending={isPending} isError={isError} />;
   }
 
@@ -16,16 +25,29 @@ const Hero = () => {
     <section
       aria-label="Featured films"
       className="relative h-190 overflow-clip bg-card"
+      onMouseEnter={pause}
+      onMouseLeave={resume}
+      onFocus={pause}
+      onBlur={resume}
     >
-      <img
-        key={movie.id}
-        src={getBannerImage(movie)}
-        alt=""
-        className="absolute inset-0 size-full object-cover"
-      />
+      {movies.map((movie, index) => (
+        <HeroBackdrop
+          key={movie.id}
+          movie={movie}
+          isActive={index === activeIndex}
+        />
+      ))}
+
       <div className="pointer-events-none absolute inset-0 bg-linear-to-l from-black/8 to-black/80" />
 
-      <HeroContent movie={movie} />
+      {movies.map((movie, index) => (
+        <HeroContent
+          key={movie.id}
+          movie={movie}
+          isActive={index === activeIndex}
+        />
+      ))}
+
       <HeroControls
         segments={segments}
         onPrevious={showPrevious}

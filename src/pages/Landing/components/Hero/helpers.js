@@ -9,3 +9,6 @@ export const getPremiereLabel = (releaseDate) => {
 };
 
 export const getBannerImage = (movie) => movie.backdropUrl ?? movie.posterUrl;
+
+export const getSteppedIndex = (index, direction, length) =>
+  (index + direction + length) % length;

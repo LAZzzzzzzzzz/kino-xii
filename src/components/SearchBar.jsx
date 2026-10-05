@@ -5,7 +5,7 @@ const SearchBar = ({ className, ...rest }) => {
   return (
     <label
       className={cn(
-        'flex h-10.25 w-95 max-w-full cursor-text items-center gap-1 rounded-full bg-tint-white px-3 py-1.5 text-primary',
+        'flex h-10.25 w-95 max-w-full cursor-text items-center gap-1 rounded-full bg-tint-white px-3 py-1.5 text-primary transition-colors duration-150 ease-out hover:bg-white/20',
         className
       )}
     >

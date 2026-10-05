@@ -1,10 +1,17 @@
 import { Link } from 'react-router';
 import { Badge, Button, TicketIcon, TimerIcon } from '@/components';
+import { cn } from '@/helpers';
 import { getPremiereLabel } from './helpers';
 
-const HeroContent = ({ movie }) => {
+const HeroContent = ({ movie, isActive }) => {
   return (
-    <div className="absolute inset-x-gutter bottom-44.75 flex max-w-145 flex-col items-start gap-3.75">
+    <div
+      inert={!isActive}
+      className={cn(
+        'absolute inset-x-gutter bottom-44.75 flex max-w-145 flex-col items-start gap-3.75 transition-opacity duration-150 ease-in motion-reduce:animate-none motion-reduce:transition-none',
+        isActive ? 'animate-hero-content' : 'opacity-0'
+      )}
+    >
       <Badge className="px-2.5">{getPremiereLabel(movie.releaseDate)}</Badge>
 
       <div className="flex w-full flex-col items-start gap-5">
@@ -27,6 +34,8 @@ const HeroContent = ({ movie }) => {
               </Badge>
             ))}
           </div>
+
+          <p className="max-w-140 text-sm leading-body">{movie.synopsis}</p>
         </div>
 
         <div className="flex items-start gap-2.5">

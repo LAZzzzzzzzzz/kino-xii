@@ -22,14 +22,14 @@ const Header = ({ className }) => {
         <Link
           to="/"
           aria-label="Kino XII home"
-          className="flex items-center gap-1.5 text-xl font-extrabold"
+          className="flex items-center gap-1.5 text-xl font-extrabold transition-opacity duration-150 ease-out hover:opacity-80"
         >
           <span>KINO</span>
           <span className="text-red">XII</span>
         </Link>
         <Link
           to="/sessions"
-          className="text-xs font-semibold tracking-overline uppercase"
+          className="text-xs font-semibold tracking-overline uppercase transition-opacity duration-150 ease-out hover:opacity-80"
         >
           Sessions
         </Link>

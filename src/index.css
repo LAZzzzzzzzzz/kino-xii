@@ -15,11 +15,68 @@
   --text-xs--line-height: normal;
   --text-sm--line-height: normal;
   --text-xl--line-height: normal;
+  --text-2xl--line-height: normal;
   --text-display: 2.5rem;
   --text-display--line-height: normal;
 
-  --spacing-gutter: 67px;
+  --radius-card: 1.25rem;
+  --radius-poster: 0.875rem;
+
+  --shadow-card:
+    0 0.0625rem 0.125rem rgba(0, 0, 0, 0.2),
+    inset 0 0 0.25rem rgba(0, 0, 0, 0.2);
+
+  --spacing-gutter: 4.1875rem;
+  --spacing-poster-w: 14.3125rem;
+  --spacing-poster-h: 8.5rem;
 
   --leading-body: 1.3;
-  --tracking-overline: 0.72px;
+  --tracking-overline: 0.045rem;
+
+  --blur-fade: 2.3125rem;
+
+  --ease-hero: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --animate-hero-backdrop: hero-backdrop 3400ms var(--ease-hero) both;
+  --animate-hero-content: hero-content 2100ms var(--ease-hero) both;
+
+  @keyframes hero-backdrop {
+    from {
+      opacity: 0;
+      transform: scale(1.08);
+    }
+
+    62% {
+      opacity: 1;
+    }
+
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes hero-content {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+}
+
+@layer base {
+  html {
+    font-size: calc(100vw / 108);
+  }
+}
+
+@utility scrollbar-none {
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
