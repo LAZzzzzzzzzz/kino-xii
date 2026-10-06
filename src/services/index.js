@@ -1,2 +1,3 @@
-export { default as axios } from './axios';
+export { default as axios, setUnauthorizedHandler } from './axios';
+export * from './auth';
 export * from './movies';

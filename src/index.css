@@ -9,8 +9,11 @@
   --color-primary: #fff;
   --color-secondary: #a9a9a9;
   --color-red: #ec3013;
+  --color-green: #4ade80;
   --color-tint-red: rgba(236, 48, 19, 0.1);
   --color-tint-white: rgba(255, 255, 255, 0.1);
+  --color-disabled: #505261;
+  --color-scrim: rgba(16, 16, 16, 0.3);
 
   --text-xs--line-height: normal;
   --text-sm--line-height: normal;
@@ -21,10 +24,13 @@
 
   --radius-card: 1.25rem;
   --radius-poster: 0.875rem;
+  --radius-modal: 1.75rem;
 
   --shadow-card:
     0 0.0625rem 0.125rem rgba(0, 0, 0, 0.2),
     inset 0 0 0.25rem rgba(0, 0, 0, 0.2);
+
+  --shadow-modal: 0 1.25rem 3.125rem -0.625rem rgba(0, 0, 0, 0.2);
 
   --spacing-gutter: 4.1875rem;
   --spacing-poster-w: 14.3125rem;
@@ -34,6 +40,7 @@
   --tracking-overline: 0.045rem;
 
   --blur-fade: 2.3125rem;
+  --blur-scrim: 0.3125rem;
 
   --ease-hero: cubic-bezier(0.22, 1, 0.36, 1);
 

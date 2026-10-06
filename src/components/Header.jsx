@@ -1,10 +1,13 @@
 import { Link } from 'react-router';
 import { navbarBackground } from '@/assets';
+import { useAuth } from '@/context';
 import { cn } from '@/helpers';
 import Button from './Button';
 import SearchBar from './SearchBar';
 
 const Header = ({ className }) => {
+  const { user, isAuthenticated, openLogin, openRegister, logout } = useAuth();
+
   return (
     <header
       className={cn(
@@ -44,10 +47,21 @@ const Header = ({ className }) => {
           />
         </div>
 
-        <div className="flex shrink-0 items-start gap-3">
-          <Button>Sign up</Button>
-          <Button variant="light">Log in</Button>
-        </div>
+        {isAuthenticated ? (
+          <div className="flex shrink-0 items-center gap-3">
+            <span className="text-sm font-extrabold">{user?.username}</span>
+            <Button variant="outline" onClick={logout}>
+              Log out
+            </Button>
+          </div>
+        ) : (
+          <div className="flex shrink-0 items-start gap-3">
+            <Button onClick={openRegister}>Sign up</Button>
+            <Button variant="light" onClick={openLogin}>
+              Log in
+            </Button>
+          </div>
+        )}
       </div>
     </header>
   );

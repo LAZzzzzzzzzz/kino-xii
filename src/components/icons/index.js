@@ -1,5 +1,9 @@
 export { default as ArrowLeftIcon } from './ArrowLeftIcon';
 export { default as BellIcon } from './BellIcon';
+export { default as CheckIcon } from './CheckIcon';
 export { default as MagnifyingGlassIcon } from './MagnifyingGlassIcon';
 export { default as TicketIcon } from './TicketIcon';
 export { default as TimerIcon } from './TimerIcon';
+export { default as UploadIcon } from './UploadIcon';
+export { default as WarningCircleIcon } from './WarningCircleIcon';
+export { default as XIcon } from './XIcon';
