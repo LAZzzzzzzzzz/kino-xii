@@ -1,4 +1,5 @@
 export { default as AuthModals } from './AuthModals';
+export { default as Avatar } from './Avatar';
 export { default as Badge } from './Badge';
 export { default as Button } from './Button';
 export { default as Footer } from './Footer';
@@ -6,6 +7,7 @@ export { default as Header } from './Header';
 export { default as Input } from './Input';
 export { default as Layout } from './Layout';
 export { default as LoginModal } from './LoginModal';
+export { default as ProfileMenu } from './ProfileMenu';
 export { default as Providers } from './Providers';
 export { default as RegisterModal } from './RegisterModal';
 export { default as SearchBar } from './SearchBar';

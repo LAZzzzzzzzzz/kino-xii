@@ -66,7 +66,7 @@ const useAuthContextValue = () => {
   };
 
   const completeAuth = ({ token: nextToken, user: nextUser }) => {
-    setTo-ken(nextToken);
+    setToken(nextToken);
     setTokenState(nextToken);
     queryClient.setQueryData([CURRENT_USER_QUERY_KEY], nextUser);
     setActiveModal(null);

@@ -10,7 +10,10 @@
   --color-secondary: #a9a9a9;
   --color-red: #ec3013;
   --color-green: #4ade80;
+  --color-orange: #e27e04;
   --color-tint-red: rgba(236, 48, 19, 0.1);
+  --color-tint-green: rgba(74, 222, 128, 0.1);
+  --color-tint-orange: rgba(226, 126, 4, 0.1);
   --color-tint-white: rgba(255, 255, 255, 0.1);
   --color-disabled: #505261;
   --color-scrim: rgba(16, 16, 16, 0.3);
@@ -24,6 +27,7 @@
 
   --radius-card: 1.25rem;
   --radius-poster: 0.875rem;
+  --radius-menu: 0.625rem;
   --radius-modal: 1.75rem;
 
   --shadow-card:
