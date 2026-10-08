@@ -13,8 +13,6 @@ const Hero = () => {
     isError,
     showPrevious,
     showNext,
-    pause,
-    resume,
   } = useHero();
 
   if (!movies.length) {
@@ -25,10 +23,6 @@ const Hero = () => {
     <section
       aria-label="Featured films"
       className="relative h-190 overflow-clip bg-card"
-      onMouseEnter={pause}
-      onMouseLeave={resume}
-      onFocus={pause}
-      onBlur={resume}
     >
       {movies.map((movie, index) => (
         <HeroBackdrop

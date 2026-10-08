@@ -6,8 +6,7 @@ const MovieCard = ({ movie, className, ...rest }) => {
   const [genre] = movie.genres;
 
   return (
-    <Link
-      to={`/movies/${movie.slug}`}
+    <article
       {...rest}
       className={cn(
         'group flex h-113 w-[calc(100%*260/1588)] shrink-0 flex-col gap-2.5 rounded-card bg-card p-3 inset-ring inset-ring-transparent shadow-card transition-[width,box-shadow] duration-300 ease-linear hover:w-[calc(100%*447/1588)] hover:inset-ring-raised motion-reduce:transition-none',
@@ -40,11 +39,11 @@ const MovieCard = ({ movie, className, ...rest }) => {
 
       <div className="flex items-center justify-between">
         <p className="text-xs font-semibold">From ₾ {movie.fromPrice}</p>
-        <Button as="span" className="py-2.5">
+        <Button as={Link} to={`/movies/${movie.slug}`} className="py-2.5">
           Buy Ticket
         </Button>
       </div>
-    </Link>
+    </article>
   );
 };
 

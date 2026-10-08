@@ -1,0 +1,24 @@
+import { cn } from '@/helpers';
+
+const TicketShape = ({ className, ...rest }) => {
+  return (
+    <svg
+      width="207"
+      height="81"
+      viewBox="0 0 207 81"
+      preserveAspectRatio="none"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+      {...rest}
+      className={cn('absolute inset-0 size-full text-page', className)}
+    >
+      <path
+        d="M117 0C117 3.86599 120.134 7 124 7C127.866 7 131 3.86599 131 0H195C201.627 0 207 5.37258 207 12V69C207 75.6274 201.627 81 195 81H131C131 77.134 127.866 74 124 74C120.134 74 117 77.134 117 81H12C5.37258 81 4.83208e-08 75.6274 0 69V12C0 5.37258 5.37258 1.20798e-07 12 0H117Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+};
+
+export default TicketShape;

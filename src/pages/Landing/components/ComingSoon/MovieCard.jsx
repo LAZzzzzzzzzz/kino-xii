@@ -1,4 +1,3 @@
-import { Link } from 'react-router';
 import { Badge, BellIcon, Button } from '@/components';
 import { cn } from '@/helpers';
 import { getReleaseLabel } from './helpers';
@@ -7,8 +6,7 @@ const MovieCard = ({ movie, className, ...rest }) => {
   const [genre] = movie.genres;
 
   return (
-    <Link
-      to={`/movies/${movie.slug}`}
+    <article
       {...rest}
       className={cn(
         'flex w-[calc(100%*470/1588)] shrink-0 items-center gap-3.75 rounded-card bg-card p-3 inset-ring inset-ring-transparent shadow-card hover:inset-ring-raised',
@@ -28,13 +26,18 @@ const MovieCard = ({ movie, className, ...rest }) => {
           </p>
 
           <div className="flex flex-col items-start gap-1.25">
-            <h3 className="text-lg leading-none font-semibold">{movie.title}</h3>
+            <h3 className="text-lg leading-none font-semibold">
+              {movie.title}
+            </h3>
             <p className="text-sm leading-body text-secondary">
               {genre.name} · {movie.runtimeMinutes} min
             </p>
           </div>
 
-          <Badge className="px-1.75 py-1 leading-none" title={movie.ageRating.description}>
+          <Badge
+            className="px-1.75 py-1 leading-none"
+            title={movie.ageRating.description}
+          >
             {movie.ageRating.code}
           </Badge>
         </div>
@@ -48,7 +51,7 @@ const MovieCard = ({ movie, className, ...rest }) => {
           Notify Me
         </Button>
       </div>
-    </Link>
+    </article>
   );
 };
 

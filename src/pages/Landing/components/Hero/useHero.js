@@ -4,7 +4,7 @@ import { FEATURED_MOVIES_QUERY_KEY } from '@/config';
 import { getFeaturedMoviesRequest } from '@/services';
 import { getSteppedIndex } from './helpers';
 
-const AUTOPLAY_DELAY = 3500 ;
+const AUTOPLAY_DELAY = 3500;
 
 export const useFeaturedMovies = () => {
   const {
@@ -23,7 +23,6 @@ export const useFeaturedMovies = () => {
 export const useHero = () => {
   const { movies, isPending, isError } = useFeaturedMovies();
   const [activeIndex, setActiveIndex] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
 
   const step = (direction) => {
     setActiveIndex((index) => getSteppedIndex(index, direction, movies.length));
@@ -33,12 +32,8 @@ export const useHero = () => {
 
   const showNext = () => step(1);
 
-  const pause = () => setIsPaused(true);
-
-  const resume = () => setIsPaused(false);
-
   useEffect(() => {
-    if (isPaused || movies.length < 2) {
+    if (movies.length < 2) {
       return;
     }
 
@@ -47,7 +42,7 @@ export const useHero = () => {
     }, AUTOPLAY_DELAY);
 
     return () => clearTimeout(timeout);
-  }, [activeIndex, isPaused, movies.length]);
+  }, [activeIndex, movies.length]);
 
   const segments = movies.map((_, index) => index === activeIndex);
 
@@ -59,7 +54,5 @@ export const useHero = () => {
     isError,
     showPrevious,
     showNext,
-    pause,
-    resume,
   };
 };
