@@ -1,5 +1,6 @@
 export { default as ArrowLeftIcon } from './ArrowLeftIcon';
 export { default as BellIcon } from './BellIcon';
+export { default as CalendarIcon } from './CalendarIcon';
 export { default as CaretDownIcon } from './CaretDownIcon';
 export { default as CheckIcon } from './CheckIcon';
 export { default as LogOutIcon } from './LogOutIcon';

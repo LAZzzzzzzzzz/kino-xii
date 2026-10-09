@@ -1,4 +1,4 @@
-export const getDisplayName = (user) => user?.fullName || user?.username || '';
+import { getDisplayName } from '@/helpers';
 
 export const getFirstName = (user) => getDisplayName(user).split(' ')[0];
 

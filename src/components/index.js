@@ -8,6 +8,7 @@ export { default as Input } from './Input';
 export { default as Layout } from './Layout';
 export { default as LoginModal } from './LoginModal';
 export { default as ProfileMenu } from './ProfileMenu';
+export { default as ProfileStatus } from './ProfileStatus';
 export { default as Providers } from './Providers';
 export { default as RegisterModal } from './RegisterModal';
 export { default as SearchBar } from './SearchBar';

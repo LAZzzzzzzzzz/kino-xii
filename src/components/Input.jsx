@@ -1,7 +1,7 @@
 import { cn } from '@/helpers';
 import { CheckIcon, WarningCircleIcon } from './icons';
 
-const Input = ({ label, error, isValid, className, ...rest }) => {
+const Input = ({ label, hint, icon, error, isValid, className, ...rest }) => {
   return (
     <label
       className={cn(
@@ -14,20 +14,22 @@ const Input = ({ label, error, isValid, className, ...rest }) => {
 
         <div
           className={cn(
-            'flex h-10 items-center gap-1.5 rounded-xl bg-card px-4 transition-colors duration-150 ease-out',
+            'relative flex h-10 items-center gap-1.5 rounded-xl bg-card px-4 transition-colors duration-150 ease-out',
             error && 'border border-red text-red'
           )}
         >
           <input
             {...rest}
-            className="min-w-0 flex-1 bg-transparent outline-none placeholder:text-secondary"
+            className="min-w-0 flex-1 bg-transparent outline-none placeholder:text-secondary disabled:text-secondary [&::-webkit-calendar-picker-indicator]:absolute [&::-webkit-calendar-picker-indicator]:inset-0 [&::-webkit-calendar-picker-indicator]:cursor-pointer [&::-webkit-calendar-picker-indicator]:opacity-0"
           />
 
           {error && <WarningCircleIcon />}
           {!error && isValid && <CheckIcon className="text-green" />}
+          {!error && !isValid && icon}
         </div>
       </div>
 
+      {hint && !error && <span className="text-secondary">{hint}</span>}
       {error && <span className="text-red">{error}</span>}
     </label>
   );

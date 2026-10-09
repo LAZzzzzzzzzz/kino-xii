@@ -7,9 +7,10 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '../ui';
-import { getDisplayName, getFirstName, getInitials } from './helpers';
+import { getDisplayName } from '@/helpers';
+import { getFirstName, getInitials } from './helpers';
 import ProfileMenuItem from './ProfileMenuItem';
-import ProfileStatus from './ProfileStatus';
+import ProfileStatus from '../ProfileStatus';
 
 const ProfileMenu = () => {
   const { user, logout } = useAuth();
