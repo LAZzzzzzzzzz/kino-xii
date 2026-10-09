@@ -3,3 +3,4 @@ export * from './auth';
 export * from './movies';
 export * from './profile';
 export * from './sessions';
+export * from './tickets';

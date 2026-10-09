@@ -1,7 +1,22 @@
 import { cn } from '@/helpers';
 import { CheckIcon, WarningCircleIcon } from './icons';
 
-const Input = ({ label, hint, icon, error, isValid, className, ...rest }) => {
+const openDatePicker = (event) => {
+  event.currentTarget.showPicker();
+};
+
+const Input = ({
+  label,
+  hint,
+  icon,
+  error,
+  isValid,
+  type,
+  className,
+  ...rest
+}) => {
+  const hasIcon = Boolean(error || isValid || icon);
+
   return (
     <label
       className={cn(
@@ -14,18 +29,26 @@ const Input = ({ label, hint, icon, error, isValid, className, ...rest }) => {
 
         <div
           className={cn(
-            'relative flex h-10 items-center gap-1.5 rounded-xl bg-card px-4 transition-colors duration-150 ease-out',
+            'relative flex h-10 items-center rounded-xl bg-card transition-colors duration-150 ease-out',
             error && 'border border-red text-red'
           )}
         >
           <input
+            type={type}
+            onClick={type === 'date' ? openDatePicker : undefined}
             {...rest}
-            className="min-w-0 flex-1 bg-transparent outline-none placeholder:text-secondary disabled:text-secondary [&::-webkit-calendar-picker-indicator]:absolute [&::-webkit-calendar-picker-indicator]:inset-0 [&::-webkit-calendar-picker-indicator]:cursor-pointer [&::-webkit-calendar-picker-indicator]:opacity-0"
+            className={cn(
+              'size-full min-w-0 bg-transparent px-4 outline-none placeholder:text-secondary disabled:text-secondary [&::-webkit-calendar-picker-indicator]:hidden',
+              type === 'date' && 'cursor-pointer',
+              hasIcon && 'pr-10'
+            )}
           />
 
-          {error && <WarningCircleIcon />}
-          {!error && isValid && <CheckIcon className="text-green" />}
-          {!error && !isValid && icon}
+          <span className="pointer-events-none absolute right-4 flex items-center">
+            {error && <WarningCircleIcon />}
+            {!error && isValid && <CheckIcon className="text-green" />}
+            {!error && !isValid && icon}
+          </span>
         </div>
       </div>
 

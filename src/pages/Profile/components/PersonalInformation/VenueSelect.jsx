@@ -14,10 +14,10 @@ const VenueSelect = ({ label, ...rest }) => {
     <label className="flex w-full min-w-0 flex-col gap-2.5 text-xs font-semibold">
       <span>{label}</span>
 
-      <div className="flex h-10 items-center gap-1.5 rounded-xl bg-card px-4">
+      <div className="relative flex h-10 items-center rounded-xl bg-card">
         <select
           {...rest}
-          className="min-w-0 flex-1 cursor-pointer appearance-none bg-transparent outline-none"
+          className="size-full min-w-0 cursor-pointer appearance-none bg-transparent pr-10 pl-4 outline-none"
         >
           <option value="" className="bg-card">
             Select a venue
@@ -30,7 +30,7 @@ const VenueSelect = ({ label, ...rest }) => {
           ))}
         </select>
 
-        <CaretDownIcon className="size-4" />
+        <CaretDownIcon className="pointer-events-none absolute right-4 size-4" />
       </div>
     </label>
   );

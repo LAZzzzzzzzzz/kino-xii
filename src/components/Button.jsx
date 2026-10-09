@@ -7,6 +7,8 @@ const BUTTON_CLASSES = {
     secondary: 'bg-tint-white text-primary hover:bg-white/90 hover:text-page',
     light: 'bg-primary text-page hover:bg-primary/90',
     outline: 'border border-secondary text-primary hover:bg-tint-white',
+    raised:
+      'bg-raised text-primary hover:bg-raised/80 disabled:bg-raised/50 disabled:text-secondary',
   },
 };
 

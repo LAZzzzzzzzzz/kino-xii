@@ -5,3 +5,4 @@ export const CURRENT_USER_QUERY_KEY = 'current-user';
 export const FILTER_OPTIONS_QUERY_KEY = 'filter-options';
 export const MOVIE_QUERY_KEY = 'movie';
 export const MOVIE_SESSIONS_QUERY_KEY = 'movie-sessions';
+export const TICKETS_QUERY_KEY = 'tickets';
