@@ -1,14 +1,8 @@
-import { useQuery } from '@tanstack/react-query';
 import { CaretDownIcon } from '@/components';
-import { FILTER_OPTIONS_QUERY_KEY } from '@/config';
-import { getFilterOptionsRequest } from '@/services';
+import { useFilterOptions } from '@/hooks';
 
 const VenueSelect = ({ label, ...rest }) => {
-  const { data: venues = [] } = useQuery({
-    queryKey: [FILTER_OPTIONS_QUERY_KEY],
-    queryFn: getFilterOptionsRequest,
-    select: (response) => response.data.data.venues,
-  });
+  const { data: options } = useFilterOptions();
 
   return (
     <label className="flex w-full min-w-0 flex-col gap-2.5 text-xs font-semibold">
@@ -23,7 +17,7 @@ const VenueSelect = ({ label, ...rest }) => {
             Select a venue
           </option>
 
-          {venues.map((venue) => (
+          {(options?.venues ?? []).map((venue) => (
             <option key={venue.id} value={venue.id} className="bg-card">
               {venue.name}
             </option>

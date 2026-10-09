@@ -6,6 +6,7 @@ const BADGE_CLASSES = {
     red: 'bg-tint-red text-red',
     white: 'bg-tint-white text-primary',
     card: 'bg-card text-secondary',
+    raised: 'bg-raised text-primary',
   },
 };
 
