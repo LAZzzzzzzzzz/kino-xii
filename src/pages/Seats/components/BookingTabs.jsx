@@ -5,7 +5,7 @@ const TAB_CLASSES =
 
 const BookingTabs = () => {
   return (
-    <div className="flex w-full items-center rounded-full bg-raised">
+    <div className="flex w-full items-center gap-2 rounded-full bg-card">
       <span aria-current="step" className={cn(TAB_CLASSES, 'bg-red')}>
         SEATS
       </span>
