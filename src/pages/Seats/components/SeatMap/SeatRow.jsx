@@ -3,7 +3,7 @@ import SeatButton from './SeatButton';
 
 const SeatRow = ({ row, selectedIds, isFull, onToggle }) => {
   return (
-    <div className="flex w-full items-center justify-center gap-2">
+    <div className="flex w-full items-center justify-center-safe gap-2">
       <span className="w-5 text-center text-xs font-semibold">{row.label}</span>
 
       {row.seats.map((seat) => (
