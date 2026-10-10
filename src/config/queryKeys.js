@@ -7,3 +7,5 @@ export const MOVIE_QUERY_KEY = 'movie';
 export const MOVIE_SESSIONS_QUERY_KEY = 'movie-sessions';
 export const TICKETS_QUERY_KEY = 'tickets';
 export const SESSIONS_QUERY_KEY = 'sessions';
+export const SESSION_QUERY_KEY = 'session';
+export const SEAT_MAP_QUERY_KEY = 'seat-map';

@@ -89,6 +89,14 @@
   }
 }
 
+@utility seat-hatch {
+  background-image: repeating-linear-gradient(
+    135deg,
+    var(--color-raised) 0 0.1875rem,
+    var(--color-card) 0.1875rem 0.375rem
+  );
+}
+
 @utility scrollbar-none {
   scrollbar-width: none;
 
