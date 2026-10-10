@@ -9,15 +9,15 @@ const LEGEND_ITEMS = [
 
 const SeatLegend = () => {
   return (
-    <ul className="flex items-center justify-center gap-5">
+    <ul className="flex items-center justify-center gap-6">
       {LEGEND_ITEMS.map(({ label, className }) => (
         <li
           key={label}
-          className="flex items-center gap-1.5 text-xs leading-body text-secondary"
+          className="flex items-center gap-2 text-xs leading-body text-secondary"
         >
           <span
             aria-hidden="true"
-            className={cn('size-3.5 rounded', className)}
+            className={cn('size-4 rounded-[0.3125rem]', className)}
           />
           {label}
         </li>

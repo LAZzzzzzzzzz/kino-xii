@@ -1,9 +1,9 @@
 const SEAT_STATE_CLASSES = {
   available:
-    'cursor-pointer border border-disabled bg-card hover:border-secondary',
-  selected: 'cursor-pointer bg-red',
-  sold: 'cursor-not-allowed bg-card text-disabled',
-  held: 'seat-hatch cursor-not-allowed text-disabled',
+    'cursor-pointer border border-disabled bg-card shadow-card hover:border-secondary',
+  selected: 'cursor-pointer bg-red shadow-card',
+  sold: 'cursor-not-allowed bg-card text-disabled shadow-card',
+  held: 'seat-hatch cursor-not-allowed text-secondary',
 };
 
 export const getSectionLabel = ({ name, rows }) => {
