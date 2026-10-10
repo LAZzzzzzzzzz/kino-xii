@@ -52,6 +52,11 @@ const Seats = () => {
             />
           </div>
 
+          <span
+            aria-hidden="true"
+            className="w-px shrink-0 self-stretch rounded-full bg-card"
+          />
+
           <SeatSummary
             maxSeats={maxSeats}
             selectedSeats={selectedSeats}
