@@ -2,13 +2,9 @@ import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import { MOVIE_SESSIONS_QUERY_KEY } from '@/config';
 import { useAuth } from '@/context';
+import { getRestrictionNotice } from '@/helpers';
 import { getMovieSessionsRequest } from '@/services';
-import {
-  countSessions,
-  getDateOptions,
-  getInitialDate,
-  getRestrictionNotice,
-} from './helpers';
+import { countSessions, getDateOptions, getInitialDate } from './helpers';
 
 export const useMovieSessions = (movie) => {
   const { user, isAuthenticated } = useAuth();

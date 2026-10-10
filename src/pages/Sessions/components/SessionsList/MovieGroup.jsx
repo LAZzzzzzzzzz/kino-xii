@@ -2,7 +2,10 @@ import { Link } from 'react-router';
 import { Badge } from '@/components';
 import SessionCard from './SessionCard';
 
-const MovieGroup = ({ movie, sessions }) => {
+const NOTICE_CLASSES =
+  'flex w-full overflow-clip rounded-xl bg-tint-orange px-3.25 py-2.25 text-xs leading-body font-semibold text-orange';
+
+const MovieGroup = ({ movie, sessions, restrictionNotice }) => {
   return (
     <article className="flex flex-col gap-3.5 not-last:border-b not-last:border-raised not-last:pb-8">
       <div className="flex items-center gap-4">
@@ -29,9 +32,17 @@ const MovieGroup = ({ movie, sessions }) => {
         </div>
       </div>
 
+      {restrictionNotice && (
+        <p className={NOTICE_CLASSES}>{restrictionNotice}</p>
+      )}
+
       <div className="flex gap-3 overflow-x-auto scrollbar-none">
         {sessions.map((session) => (
-          <SessionCard key={session.id} session={session} />
+          <SessionCard
+            key={session.id}
+            session={session}
+            restrictionNotice={restrictionNotice}
+          />
         ))}
       </div>
     </article>

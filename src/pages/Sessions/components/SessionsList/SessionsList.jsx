@@ -28,6 +28,7 @@ const SessionsList = ({ groups, isPending, isError }) => {
           key={group.movie.id}
           movie={group.movie}
           sessions={group.sessions}
+          restrictionNotice={group.restrictionNotice}
         />
       ))}
     </div>

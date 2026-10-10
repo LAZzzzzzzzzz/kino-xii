@@ -1,29 +1,38 @@
-import { Link } from 'react-router';
+import { useNavigate } from 'react-router';
 import { Badge, TicketIcon } from '@/components';
+import { useAuth } from '@/context';
 import { cn } from '@/helpers';
-import { getSessionCardProps, isLowOnSeats } from './helpers';
+import { SOLD_OUT_REASON, getSessionCardProps, isLowOnSeats } from './helpers';
 
-const SessionCard = ({ session }) => {
-  const Component = session.isSoldOut ? 'div' : Link;
+const SessionCard = ({ session, restrictionNotice }) => {
+  const navigate = useNavigate();
+  const { requireAuth } = useAuth();
+  const isDisabled = session.isSoldOut || Boolean(restrictionNotice);
+  const disabledReason = restrictionNotice ?? SOLD_OUT_REASON;
+
+  const openSeats = () => {
+    requireAuth(() => navigate(`/sessions/${session.id}/seats`));
+  };
 
   return (
-    <Component
-      {...getSessionCardProps(session)}
+    <button
+      type="button"
+      onClick={isDisabled ? undefined : openSeats}
+      disabled={isDisabled}
+      {...getSessionCardProps({ isDisabled, disabledReason })}
       className={cn(
-        'flex w-63 shrink-0 flex-col gap-1.5 rounded-2xl bg-card p-3.75 transition-transform duration-150 ease-out motion-reduce:transition-none',
-        session.isSoldOut
-          ? 'cursor-not-allowed opacity-45'
-          : 'hover:-translate-y-0.5'
+        'flex w-63 shrink-0 cursor-pointer flex-col gap-1.5 rounded-2xl bg-card p-3.75 text-left transition-transform duration-150 ease-out motion-reduce:transition-none',
+        isDisabled ? 'cursor-not-allowed opacity-45' : 'hover:-translate-y-0.5'
       )}
     >
-      <div className="flex items-center justify-between gap-2">
+      <div className="flex w-full items-center justify-between gap-2">
         <p className="text-lg leading-normal font-extrabold">{session.time}</p>
         <Badge variant="raised" className="py-1">
           {session.format.name}
         </Badge>
       </div>
 
-      <div className="flex items-center justify-between gap-2 text-xs leading-body">
+      <div className="flex w-full items-center justify-between gap-2 text-xs leading-body">
         <p className="text-secondary">{session.language.name}</p>
 
         {session.isSoldOut ? (
@@ -41,13 +50,13 @@ const SessionCard = ({ session }) => {
         )}
       </div>
 
-      <div className="flex items-center justify-between gap-2">
+      <div className="flex w-full items-center justify-between gap-2">
         <p className="text-xs leading-body font-semibold">
           {session.venue.name} · Hall {session.hall.name}
         </p>
         <p className="text-sm font-extrabold">₾{session.price}</p>
       </div>
-    </Component>
+    </button>
   );
 };
 

@@ -1,5 +1,6 @@
-import { Link } from 'react-router';
+import { useNavigate } from 'react-router';
 import { Badge, TicketIcon } from '@/components';
+import { useAuth } from '@/context';
 import { cn } from '@/helpers';
 import TicketShape from './TicketShape';
 import { getSessionTicketProps } from './helpers';
@@ -11,14 +12,22 @@ const SessionTicket = ({
   className,
   ...rest
 }) => {
-  const Component = isDisabled ? 'div' : Link;
+  const navigate = useNavigate();
+  const { requireAuth } = useAuth();
+
+  const openSeats = () => {
+    requireAuth(() => navigate(`/sessions/${session.id}/seats`));
+  };
 
   return (
-    <Component
-      {...getSessionTicketProps({ session, isDisabled, disabledReason })}
+    <button
+      type="button"
+      onClick={isDisabled ? undefined : openSeats}
+      disabled={isDisabled}
+      {...getSessionTicketProps({ isDisabled, disabledReason })}
       {...rest}
       className={cn(
-        'relative flex h-20.25 w-51.75 shrink-0 items-center justify-between overflow-clip rounded-xl drop-shadow-ticket transition-transform duration-150 ease-out motion-reduce:transition-none',
+        'relative flex h-20.25 w-51.75 shrink-0 cursor-pointer items-center justify-between overflow-clip rounded-xl drop-shadow-ticket transition-transform duration-150 ease-out motion-reduce:transition-none',
         isDisabled
           ? 'cursor-not-allowed opacity-50 grayscale'
           : 'hover:-translate-y-0.5',
@@ -54,7 +63,7 @@ const SessionTicket = ({
       </div>
 
       <span className="absolute top-2.75 left-31 h-14.75 border-l-[0.09375rem] border-dashed border-primary" />
-    </Component>
+    </button>
   );
 };
 

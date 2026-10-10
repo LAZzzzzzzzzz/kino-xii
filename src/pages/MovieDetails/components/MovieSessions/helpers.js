@@ -61,24 +61,6 @@ export const getSessionsSummary = ({
   return `${sessionCount} ${unit} on ${selectedLabel}`;
 };
 
-export const getRestrictionNotice = (movie, user) => {
-  const { code, minAge } = movie.ageRating;
-
-  if (!user) {
-    return null;
-  }
-
-  if (!user.profileComplete) {
-    return 'Complete your profile with your date of birth before you can buy tickets.';
-  }
-
-  if (minAge === 0 || user.age >= minAge) {
-    return null;
-  }
-
-  return `This film is rated ${code}. You cannot buy tickets for it with this account.`;
-};
-
 export const groupSessionsByHall = (sessions) => {
   const halls = new Map();
 
@@ -110,14 +92,10 @@ export const getSessionItems = (sessions, restrictionNotice) => {
   });
 };
 
-export const getSessionTicketProps = ({
-  session,
-  isDisabled,
-  disabledReason,
-}) => {
+export const getSessionTicketProps = ({ isDisabled, disabledReason }) => {
   if (isDisabled) {
     return { 'aria-disabled': true, title: disabledReason };
   }
 
-  return { to: `/sessions/${session.id}/seats` };
+  return {};
 };

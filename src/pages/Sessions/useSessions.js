@@ -1,6 +1,8 @@
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import { useSearchParams } from 'react-router';
 import { SESSIONS_QUERY_KEY } from '@/config';
+import { useAuth } from '@/context';
+import { getRestrictionNotice } from '@/helpers';
 import { useFilterOptions } from '@/hooks';
 import { getSessionsRequest } from '@/services';
 import {
@@ -16,6 +18,7 @@ import {
 
 export const useSessions = () => {
   const [searchParams, setSearchParams] = useSearchParams();
+  const { user, isAuthenticated } = useAuth();
   const { data: options } = useFilterOptions();
   const filters = parseFilters(searchParams);
 
@@ -32,6 +35,13 @@ export const useSessions = () => {
 
   const venues = options?.venues ?? [];
   const formats = options?.formats ?? [];
+  const groups = (data?.data ?? []).map((group) => ({
+    ...group,
+    restrictionNotice: getRestrictionNotice(
+      group.movie,
+      isAuthenticated ? user : null
+    ),
+  }));
 
   return {
     filters,
@@ -42,7 +52,7 @@ export const useSessions = () => {
     availableFormats: getAvailableFormats(formats, venues, filters.venues),
     dateOptions: getDateOptions(),
     activeCount: countActiveFilters(filters),
-    groups: data?.data ?? [],
+    groups,
     meta: data?.meta,
     isPending,
     isError,
