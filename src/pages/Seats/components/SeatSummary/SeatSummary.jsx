@@ -16,7 +16,7 @@ const SeatSummary = ({
   return (
     <section
       aria-label="Your seats"
-      className="flex min-w-0 flex-1 flex-col gap-5"
+      className="flex min-w-0 flex-1 flex-col gap-3"
     >
       <h2 className="text-sm font-extrabold">Your seats · Max {maxSeats}</h2>
 
@@ -27,7 +27,7 @@ const SeatSummary = ({
         </p>
       )}
 
-      <ul className="flex flex-col gap-5">
+      <ul className="flex flex-col gap-3">
         {selectedSeats.map((seat) => (
           <SelectedSeatCard
             key={seat.seatId}
@@ -46,8 +46,8 @@ const SeatSummary = ({
         </p>
       )}
 
-      <div className="mt-auto flex flex-col gap-3">
-        <div className="flex items-center justify-between gap-4">
+      <div className="mt-auto flex flex-col gap-3 pt-2.5">
+        <div className="flex items-center justify-between gap-4 px-1.25">
           <span className="text-xs font-semibold tracking-overline uppercase">
             Subtotal
           </span>

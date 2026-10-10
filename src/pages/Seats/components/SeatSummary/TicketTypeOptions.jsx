@@ -11,10 +11,8 @@ const TicketTypeOptions = ({ ticketTypes, ticketType, onSelect }) => {
           onClick={() => onSelect(option.slug)}
           aria-pressed={option.slug === ticketType}
           className={cn(
-            'flex-1 cursor-pointer rounded-2xl py-2 text-xs font-semibold whitespace-nowrap transition-colors duration-150 ease-out',
-            option.slug === ticketType
-              ? 'bg-red text-primary'
-              : 'bg-raised text-secondary hover:text-primary'
+            'flex-1 cursor-pointer rounded-2xl py-2 text-xs whitespace-nowrap text-primary transition-colors duration-150 ease-out',
+            option.slug === ticketType ? 'bg-red' : 'bg-raised'
           )}
         >
           {getTicketTypeLabel(option)}
