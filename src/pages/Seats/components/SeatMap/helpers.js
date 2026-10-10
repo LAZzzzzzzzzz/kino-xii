@@ -34,3 +34,16 @@ export const getSeatLabel = (seat, state) => {
 
   return `Seat ${seat.code}`;
 };
+
+export const getSeatGridVars = (sections) => {
+  const rows = sections.flatMap(({ rows }) => rows);
+  const cols = Math.max(1, ...rows.map(({ seats }) => seats.length));
+  const aisles = Math.max(
+    0,
+    ...rows.map(
+      ({ seats }) => seats.filter(({ aisleAfter }) => aisleAfter).length
+    )
+  );
+
+  return { '--seat-cols': cols, '--seat-aisles': aisles };
+};
