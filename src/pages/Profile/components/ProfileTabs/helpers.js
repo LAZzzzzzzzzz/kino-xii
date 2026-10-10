@@ -1,5 +1,4 @@
-export const PERSONAL_SECTION = 'personal-information';
-export const TICKETS_SECTION = 'my-tickets';
+import { PERSONAL_SECTION, TICKETS_SECTION } from '@/config';
 
 export const PROFILE_SECTIONS = [
   {

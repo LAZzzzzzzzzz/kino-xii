@@ -1,28 +1,15 @@
 const DEFAULT_TICKET_TYPE = 'adult';
 
+// A seat carries no type of its own, so its "seat type" is the section it sits
+// in — carried along here so the summary needs nothing further from the map.
 const getAllSeats = (seatMap) => {
   const sections = seatMap?.sections ?? [];
 
   return sections.flatMap((section) =>
-    section.rows.flatMap((row) => row.seats)
+    section.rows.flatMap((row) =>
+      row.seats.map((seat) => ({ ...seat, section: section.name }))
+    )
   );
-};
-
-export const getSessionSummary = (session) => {
-  const date = new Date(session.date).toLocaleDateString('en-GB', {
-    weekday: 'long',
-    day: 'numeric',
-    month: 'long',
-  });
-
-  return [
-    session.venue.name,
-    `Hall ${session.hall.name}`,
-    date,
-    session.time,
-    session.format.name,
-    session.language.name,
-  ].join(' · ');
 };
 
 export const getTicketTypes = (ticketTypes, minAge) => {
@@ -53,59 +40,48 @@ export const getSubtotal = (selectedSeats, prices) => {
 export const getHeldSeats = (seatMap) => {
   return getAllSeats(seatMap)
     .filter(({ isMine }) => isMine)
-    .map(({ id, code }) => ({
+    .map(({ id, code, section }) => ({
       seatId: id,
       code,
+      section,
       ticketType: DEFAULT_TICKET_TYPE,
     }));
 };
 
-export const getToggledSeats = ({ selectedSeats, seat, maxSeats }) => {
+export const MAX_SEATS_REASON = 'max-seats';
+
+// The cap has to be reportable rather than silently enforced: the task page
+// wants a message on the attempt, so the attempt must be possible.
+export const getToggledSeats = ({ selectedSeats, seat, section, maxSeats }) => {
   const isSelected = selectedSeats.some(({ seatId }) => seatId === seat.id);
 
   if (isSelected) {
-    return selectedSeats.filter(({ seatId }) => seatId !== seat.id);
+    return {
+      seats: selectedSeats.filter(({ seatId }) => seatId !== seat.id),
+      reason: null,
+    };
   }
 
   if (selectedSeats.length >= maxSeats) {
-    return selectedSeats;
+    return { seats: selectedSeats, reason: MAX_SEATS_REASON };
   }
 
-  return [
-    ...selectedSeats,
-    { seatId: seat.id, code: seat.code, ticketType: DEFAULT_TICKET_TYPE },
-  ];
+  return {
+    seats: [
+      ...selectedSeats,
+      {
+        seatId: seat.id,
+        code: seat.code,
+        section,
+        ticketType: DEFAULT_TICKET_TYPE,
+      },
+    ],
+    reason: null,
+  };
 };
 
 export const getRetypedSeats = (selectedSeats, seatId, ticketType) => {
   return selectedSeats.map((seat) =>
     seat.seatId === seatId ? { ...seat, ticketType } : seat
   );
-};
-
-export const getKeptSeats = (selectedSeats, contested) => {
-  return selectedSeats.filter(({ code }) => !contested.includes(code));
-};
-
-export const toHoldPayload = (selectedSeats) => {
-  return selectedSeats.map(({ seatId, ticketType }) => ({
-    seatId,
-    ticketType,
-  }));
-};
-
-export const getHoldError = (error) => {
-  const { contested, message } = error?.response?.data ?? {};
-
-  if (contested?.length) {
-    return {
-      contested,
-      message: `${contested.join(', ')} ${contested.length === 1 ? 'was' : 'were'} just taken by someone else.`,
-    };
-  }
-
-  return {
-    contested: [],
-    message: message ?? 'Those seats could not be held. Please try again.',
-  };
 };

@@ -8,6 +8,7 @@ const SeatSummary = ({
   prices,
   subtotal,
   holdError,
+  seatErrors,
   isHolding,
   onSelectTicketType,
   onRemove,
@@ -33,6 +34,7 @@ const SeatSummary = ({
             key={seat.seatId}
             seat={seat}
             price={prices[seat.ticketType]}
+            error={seatErrors?.[seat.seatId]}
             ticketTypes={ticketTypes}
             onSelectTicketType={onSelectTicketType}
             onRemove={onRemove}

@@ -111,8 +111,11 @@
   --seat-size: clamp(
     1.75rem,
     calc(
-      (100% - 1.25rem - var(--seat-aisles) * 1rem -
-        (var(--seat-cols) + var(--seat-aisles)) * 0.5rem) / var(--seat-cols)
+      (
+          100% - 1.25rem - var(--seat-aisles) * 1rem -
+            (var(--seat-cols) + var(--seat-aisles)) * 0.5rem
+        ) /
+        var(--seat-cols)
     ),
     3.25rem
   );

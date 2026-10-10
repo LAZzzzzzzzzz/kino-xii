@@ -1,10 +1,6 @@
 import { ProfileStatus } from '@/components';
-import {
-  MyTickets,
-  PersonalInformation,
-  ProfileTabs,
-  TICKETS_SECTION,
-} from './components';
+import { TICKETS_SECTION } from '@/config';
+import { MyTickets, PersonalInformation, ProfileTabs } from './components';
 import { useProfile } from './useProfile';
 
 const Profile = () => {

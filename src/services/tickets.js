@@ -7,3 +7,7 @@ export const getTicketsRequest = async () => {
 export const refundOrderRequest = async (reference) => {
   return await axios.post(`/orders/${reference}/refund`);
 };
+
+export const createOrderRequest = async (payload) => {
+  return await axios.post('/orders', payload);
+};

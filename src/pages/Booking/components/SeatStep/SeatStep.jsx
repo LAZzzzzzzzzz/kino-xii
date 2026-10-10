@@ -1,78 +1,69 @@
-import {
-  BookingHeader,
-  BookingTabs,
-  SeatMap,
-  SeatSummary,
-  SeatsPlaceholder,
-} from './components';
-import { useSeats } from './useSeats';
+import SeatMap from './SeatMap';
+import SeatSummary from './SeatSummary';
+import { useSeatStep } from './useSeatStep';
 
-const Seats = () => {
+const SeatStep = ({ seededSeats, notice, seatErrors, isHolding, onHold }) => {
   const {
-    session,
     sections,
-    summary,
     maxSeats,
     ticketTypes,
     prices,
     selectedSeats,
     selectedIds,
     subtotal,
-    holdError,
-    isHolding,
+    capNotice,
     isPending,
     isError,
     toggleSeat,
     selectTicketType,
     removeSeat,
-    holdSelection,
-  } = useSeats();
+  } = useSeatStep({ seededSeats });
 
-  if (!session || !sections.length) {
-    return <SeatsPlaceholder isPending={isPending} isError={isError} />;
+  if (!sections.length) {
+    return (
+      <div
+        aria-busy={isPending}
+        className="flex h-110 w-full items-center justify-center"
+      >
+        {isError && (
+          <p className="text-sm text-secondary">
+            This seat map could not be loaded. Please try again later.
+          </p>
+        )}
+      </div>
+    );
   }
 
   return (
-    <div className="flex justify-center px-12.75 pt-29.5 pb-65">
-      <section
-        aria-label="Seat selection"
-        className="flex w-286.5 flex-col gap-8 rounded-modal border border-raised bg-page p-8 shadow-modal"
-      >
-        <BookingHeader title={session.movie.title} summary={summary} />
+    <div className="flex w-full gap-5">
+      <div className="flex w-180 flex-col gap-9">
+        <SeatMap
+          sections={sections}
+          selectedIds={selectedIds}
+          onToggle={toggleSeat}
+        />
+      </div>
 
-        <div className="flex gap-5">
-          <div className="flex w-180 flex-col gap-9">
-            <BookingTabs />
+      <span
+        aria-hidden="true"
+        className="w-px shrink-0 self-stretch rounded-full bg-card"
+      />
 
-            <SeatMap
-              sections={sections}
-              selectedIds={selectedIds}
-              isFull={selectedSeats.length >= maxSeats}
-              onToggle={toggleSeat}
-            />
-          </div>
-
-          <span
-            aria-hidden="true"
-            className="w-px shrink-0 self-stretch rounded-full bg-card"
-          />
-
-          <SeatSummary
-            maxSeats={maxSeats}
-            selectedSeats={selectedSeats}
-            ticketTypes={ticketTypes}
-            prices={prices}
-            subtotal={subtotal}
-            holdError={holdError}
-            isHolding={isHolding}
-            onSelectTicketType={selectTicketType}
-            onRemove={removeSeat}
-            onSubmit={holdSelection}
-          />
-        </div>
-      </section>
+      <SeatSummary
+        maxSeats={maxSeats}
+        selectedSeats={selectedSeats}
+        ticketTypes={ticketTypes}
+        prices={prices}
+        subtotal={subtotal}
+        holdError={capNotice ?? notice}
+        seatErrors={seatErrors}
+        isHolding={isHolding}
+        onSelectTicketType={selectTicketType}
+        onRemove={removeSeat}
+        onSubmit={() => onHold(selectedSeats)}
+      />
     </div>
   );
 };
 
-export default Seats;
+export default SeatStep;

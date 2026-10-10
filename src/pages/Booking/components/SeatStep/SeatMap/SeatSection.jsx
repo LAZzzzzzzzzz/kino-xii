@@ -1,7 +1,7 @@
 import SeatRow from './SeatRow';
 import { getSectionLabel } from './helpers';
 
-const SeatSection = ({ section, selectedIds, isFull, onToggle }) => {
+const SeatSection = ({ section, selectedIds, onToggle }) => {
   return (
     <div className="flex flex-col items-center gap-2.5">
       <p className="self-start text-xs font-semibold tracking-overline text-secondary uppercase">
@@ -12,8 +12,8 @@ const SeatSection = ({ section, selectedIds, isFull, onToggle }) => {
         <SeatRow
           key={row.label}
           row={row}
+          section={section.name}
           selectedIds={selectedIds}
-          isFull={isFull}
           onToggle={onToggle}
         />
       ))}

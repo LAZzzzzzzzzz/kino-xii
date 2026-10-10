@@ -1,11 +1,15 @@
 import { useEffect, useRef, useState } from 'react';
+import { useLocation } from 'react-router';
+import { PERSONAL_SECTION } from '@/config';
 import { useAuth } from '@/context';
 import { useTickets } from '@/hooks';
-import { PERSONAL_SECTION } from './components';
 
 export const useProfile = () => {
   const { user, isAuthenticated, openLogin } = useAuth();
-  const [activeSection, setActiveSection] = useState(PERSONAL_SECTION);
+  const location = useLocation();
+  const [activeSection, setActiveSection] = useState(
+    () => location.state?.section ?? PERSONAL_SECTION
+  );
   const { data: orders = [] } = useTickets(isAuthenticated);
   const hasPromptedRef = useRef(false);
 

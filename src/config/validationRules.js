@@ -70,3 +70,38 @@ export const DATE_OF_BIRTH_RULES = {
     );
   },
 };
+
+export const CARD_NUMBER_RULES = {
+  required: 'Card number is required',
+  validate: (value) => {
+    const digits = String(value).replace(/\s/g, '');
+
+    return /^\d{16}$/.test(digits) || 'Card number must be 16 digits';
+  },
+};
+
+export const EXPIRY_RULES = {
+  required: 'Expiry is required',
+  validate: (value) => {
+    const match = String(value).match(/^(\d{2})\/(\d{2})$/);
+
+    if (!match) {
+      return 'Use MM/YY';
+    }
+
+    const [, month, year] = match;
+
+    if (Number(month) < 1 || Number(month) > 12) {
+      return 'Use MM/YY';
+    }
+
+    const endOfMonth = new Date(2000 + Number(year), Number(month), 1);
+
+    return endOfMonth > new Date() || 'This card has expired';
+  },
+};
+
+export const CVV_RULES = {
+  required: 'CVV is required',
+  validate: (value) => /^\d{3}$/.test(String(value)) || 'CVV must be 3 digits',
+};

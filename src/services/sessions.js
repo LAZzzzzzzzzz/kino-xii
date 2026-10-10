@@ -19,3 +19,11 @@ export const getSeatMapRequest = async (sessionId) => {
 export const holdSeatsRequest = async (sessionId, seats) => {
   return await axios.post(`/sessions/${sessionId}/holds`, { seats });
 };
+
+export const getHoldRequest = async (holdId) => {
+  return await axios.get(`/holds/${holdId}`);
+};
+
+export const releaseHoldRequest = async (holdId) => {
+  return await axios.delete(`/holds/${holdId}`);
+};

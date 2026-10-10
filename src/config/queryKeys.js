@@ -9,3 +9,4 @@ export const TICKETS_QUERY_KEY = 'tickets';
 export const SESSIONS_QUERY_KEY = 'sessions';
 export const SESSION_QUERY_KEY = 'session';
 export const SEAT_MAP_QUERY_KEY = 'seat-map';
+export const HOLD_QUERY_KEY = 'hold';

@@ -1,7 +1,7 @@
 import { cn } from '@/helpers';
 import { getSeatClasses, getSeatLabel, getSeatState } from './helpers';
 
-const SeatButton = ({ seat, isSelected, isFull, onToggle }) => {
+const SeatButton = ({ seat, section, isSelected, onToggle }) => {
   if (seat.state === 'unavailable') {
     return (
       <span
@@ -17,8 +17,8 @@ const SeatButton = ({ seat, isSelected, isFull, onToggle }) => {
   return (
     <button
       type="button"
-      onClick={() => onToggle(seat)}
-      disabled={!isSelectable || (isFull && !isSelected)}
+      onClick={() => onToggle(seat, section)}
+      disabled={!isSelectable}
       aria-pressed={isSelected}
       aria-label={getSeatLabel(seat, state)}
       className={cn(

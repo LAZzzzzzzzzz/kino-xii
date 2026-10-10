@@ -4,6 +4,7 @@ import TicketTypeOptions from './TicketTypeOptions';
 const SelectedSeatCard = ({
   seat,
   price,
+  error,
   ticketTypes,
   onSelectTicketType,
   onRemove,
@@ -13,6 +14,10 @@ const SelectedSeatCard = ({
       <div className="flex items-center gap-3">
         <span className="text-xs text-secondary">Seat</span>
         <span className="text-xs font-semibold">{seat.code}</span>
+
+        {seat.section && (
+          <span className="text-xs text-secondary">{seat.section}</span>
+        )}
 
         <span className="ml-auto text-xs font-semibold">₾{price}</span>
 
@@ -27,6 +32,12 @@ const SelectedSeatCard = ({
       </div>
 
       <span aria-hidden="true" className="h-px w-full bg-raised" />
+
+      {error && (
+        <p role="alert" className="text-xs leading-body text-red">
+          {error}
+        </p>
+      )}
 
       <TicketTypeOptions
         ticketTypes={ticketTypes}

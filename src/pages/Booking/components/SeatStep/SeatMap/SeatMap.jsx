@@ -3,7 +3,7 @@ import SeatLegend from './SeatLegend';
 import SeatSection from './SeatSection';
 import { getSeatGridVars } from './helpers';
 
-const SeatMap = ({ sections, selectedIds, isFull, onToggle }) => {
+const SeatMap = ({ sections, selectedIds, onToggle }) => {
   return (
     <div className="flex flex-col gap-8">
       <div className="overflow-x-auto">
@@ -18,7 +18,6 @@ const SeatMap = ({ sections, selectedIds, isFull, onToggle }) => {
               key={section.name}
               section={section}
               selectedIds={selectedIds}
-              isFull={isFull}
               onToggle={onToggle}
             />
           ))}
