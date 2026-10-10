@@ -1,9 +1,10 @@
-import { ComingSoon, Hero, NowPlaying } from './components';
+import { ComingSoon, Hero, NowPlaying, RecentlyViewed } from './components';
 
 const Landing = () => {
   return (
     <>
       <Hero />
+      <RecentlyViewed />
       <NowPlaying />
       <ComingSoon />
     </>

@@ -9,7 +9,7 @@ const NowPlaying = () => {
     <section
       aria-label="Now playing"
       aria-busy={isPending}
-      className="flex flex-col gap-6 px-17.5 pt-8"
+      className="flex flex-col gap-6 px-17.5"
     >
       <SectionHeader title="Now Playing" seeAllTo="/sessions" />
 
