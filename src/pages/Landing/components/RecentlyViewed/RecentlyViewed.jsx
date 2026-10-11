@@ -1,10 +1,7 @@
-import { useRecentlyViewed } from './useRecentlyViewed';
 import RecentlyViewedCard from './RecentlyViewedCard';
 import SectionHeader from '../SectionHeader';
 
-const RecentlyViewed = () => {
-  const movies = useRecentlyViewed();
-
+const RecentlyViewed = ({movies}) => {
   if (!movies.length) {
     return null;
   }

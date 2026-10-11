@@ -1,11 +1,14 @@
 import { ComingSoon, Hero, NowPlaying, RecentlyViewed } from './components';
+import { useRecentlyViewed } from './components/RecentlyViewed/useRecentlyViewed';
 
 const Landing = () => {
+  const movies = useRecentlyViewed();
+
   return (
     <>
       <Hero />
-      <RecentlyViewed />
-      <NowPlaying />
+      <RecentlyViewed movies={movies} />
+      <NowPlaying hasMargin={!movies.length} />
       <ComingSoon />
     </>
   );

@@ -1,15 +1,16 @@
 import MovieCard from './MovieCard';
 import SectionHeader from '../SectionHeader';
 import { useNowPlaying } from './useNowPlaying';
+import { cn } from '@/helpers';
 
-const NowPlaying = () => {
+const NowPlaying = ({ hasMargin }) => {
   const { movies, isPending, isError } = useNowPlaying();
 
   return (
     <section
       aria-label="Now playing"
       aria-busy={isPending}
-      className="flex flex-col gap-6 px-17.5"
+      className={cn('flex flex-col gap-6 px-17.5', hasMargin && 'mt-10')}
     >
       <SectionHeader title="Now Playing" seeAllTo="/sessions" />
 
