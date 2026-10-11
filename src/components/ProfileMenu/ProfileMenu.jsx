@@ -1,3 +1,4 @@
+import { TICKETS_SECTION } from '@/config';
 import { useAuth } from '@/context';
 import Avatar from '../Avatar';
 import { CaretDownIcon, LogOutIcon, TicketIcon, UserIcon } from '../icons';
@@ -72,7 +73,8 @@ const ProfileMenu = () => {
             </ProfileMenuItem>
 
             <ProfileMenuItem
-              to="/tickets"
+              to="/profile"
+              state={{ section: TICKETS_SECTION }}
               icon={<TicketIcon className="size-4" />}
             >
               My Tickets

@@ -6,6 +6,7 @@ import {
   Confirmation,
   Landing,
   MovieDetails,
+  NotFound,
   Profile,
   SEAT_STEP,
   Sessions,
@@ -28,6 +29,7 @@ function App() {
         />
         <Route path="/orders/:reference" element={<Confirmation />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Layout>
   );
