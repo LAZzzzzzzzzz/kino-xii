@@ -38,7 +38,7 @@ const Input = ({
             onClick={type === 'date' ? openDatePicker : undefined}
             {...rest}
             className={cn(
-              'size-full min-w-0 bg-transparent px-4 outline-none placeholder:text-secondary disabled:text-secondary [&::-webkit-calendar-picker-indicator]:hidden',
+              'size-full min-w-0 bg-transparent px-4 outline-none placeholder:text-secondary autofill:caret-primary autofill:shadow-[inset_0_0_0_100rem_var(--color-card)] autofill:[-webkit-text-fill-color:var(--color-primary)] disabled:text-secondary [&::-webkit-calendar-picker-indicator]:hidden',
               type === 'date' && 'cursor-pointer',
               hasIcon && 'pr-10'
             )}

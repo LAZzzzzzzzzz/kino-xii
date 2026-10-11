@@ -1,9 +1,12 @@
-import { Badge, BellIcon, Button } from '@/components';
+import { Badge, BellIcon, Button, CheckIcon } from '@/components';
 import { cn } from '@/helpers';
-import { getReleaseLabel } from './helpers';
+import { getNotifyState, getReleaseLabel } from './helpers';
+import { useNotifyMovie } from './useNotifyMovie';
 
 const MovieCard = ({ movie, className, ...rest }) => {
   const [genre] = movie.genres;
+  const { isNotified, isPending, notify } = useNotifyMovie(movie);
+  const notifyState = getNotifyState({ isNotified, isPending });
 
   return (
     <article
@@ -43,12 +46,13 @@ const MovieCard = ({ movie, className, ...rest }) => {
         </div>
 
         <Button
-          as="span"
           variant="outline"
+          onClick={notify}
+          disabled={notifyState.isDisabled}
           className="h-7 w-24.25 text-xs font-semibold"
         >
-          <BellIcon />
-          Notify Me
+          {isNotified ? <CheckIcon className="size-4" /> : <BellIcon />}
+          {notifyState.label}
         </Button>
       </div>
     </article>

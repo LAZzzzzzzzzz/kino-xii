@@ -19,3 +19,11 @@ export const getMovieRequest = async (slug) => {
 export const getMovieSessionsRequest = async (slug, date) => {
   return await axios.get(`/movies/${slug}/sessions`, { params: { date } });
 };
+
+export const searchMoviesRequest = async (query) => {
+  return await axios.get('/search', { params: { q: query } });
+};
+
+export const notifyMovieRequest = async (slug) => {
+  return await axios.post(`/movies/${slug}/notify`);
+};

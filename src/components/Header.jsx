@@ -4,7 +4,7 @@ import { useAuth } from '@/context';
 import { cn } from '@/helpers';
 import Button from './Button';
 import ProfileMenu from './ProfileMenu';
-import SearchBar from './SearchBar';
+import SearchMenu from './SearchMenu';
 
 const Header = ({ className }) => {
   const { isAuthenticated, openLogin, openRegister } = useAuth();
@@ -41,11 +41,7 @@ const Header = ({ className }) => {
 
       <div className="relative flex min-w-0 items-center gap-8">
         <div role="search" className="flex w-120 min-w-0 flex-col items-end">
-          <SearchBar
-            name="search"
-            placeholder="Search films and live events"
-            aria-label="Search films and live events"
-          />
+          <SearchMenu />
         </div>
 
         {isAuthenticated ? (

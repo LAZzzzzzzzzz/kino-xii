@@ -7,4 +7,5 @@ export { default as isValueValid } from './isValueValid';
 export { default as normalizeMobileNumber } from './normalizeMobileNumber';
 export * from './hold';
 export * from './token';
+export * from './notifiedMovies';
 export * from './recentlyViewedMovies';

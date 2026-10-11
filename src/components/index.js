@@ -12,5 +12,6 @@ export { default as ProfileStatus } from './ProfileStatus';
 export { default as Providers } from './Providers';
 export { default as RegisterModal } from './RegisterModal';
 export { default as SearchBar } from './SearchBar';
+export { default as SearchMenu } from './SearchMenu';
 export * from './icons';
 export * from './Modal';

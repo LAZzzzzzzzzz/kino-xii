@@ -10,3 +10,4 @@ export const SESSIONS_QUERY_KEY = 'sessions';
 export const SESSION_QUERY_KEY = 'session';
 export const SEAT_MAP_QUERY_KEY = 'seat-map';
 export const HOLD_QUERY_KEY = 'hold';
+export const SEARCH_QUERY_KEY = 'search';
